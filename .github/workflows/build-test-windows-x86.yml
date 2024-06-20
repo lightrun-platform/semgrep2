@@ -26,9 +26,6 @@ jobs:
       if: steps.cache-opam.outputs.cache-hit != 'true'
     - run: dir
       working-directory: ${{ github.workspace }}
-    - name: Add opam to PATH
-      run: |
-        echo "##[add-path]${{ github.workspace }}"
     - run: git config --system core.longpaths true
     - name: Make checkout speedy
       run: git config --global fetch.parallel 50
@@ -44,5 +41,5 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-deps
     - run: |
-        opam install --deps-only ./
+        .\opam.exe install --deps-only .\
       if: steps.cache-ocaml-deps.outputs.cache-hit != 'true'
