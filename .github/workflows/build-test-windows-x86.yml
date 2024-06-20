@@ -24,6 +24,11 @@ jobs:
         .\opam.exe init --bare --disable-sandboxing
         .\opam.exe switch create . "ocaml-variants.4.14.0+mingw64c" --repos "default,mingw=git+https://github.com/fdopen/opam-repository-mingw.git#opam2"
       if: steps.cache-opam.outputs.cache-hit != 'true'
+    - run: dir
+      working-directory: ${{ github.workspace }}
+    - name: Add opam to PATH
+      run: |
+        echo "##[add-path]${{ github.workspace }}"
     - run: git config --system core.longpaths true
     - name: Make checkout speedy
       run: git config --global fetch.parallel 50
