@@ -41,5 +41,6 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-deps
     - run: |
+        dir  
         .\opam.exe install --deps-only .\
       if: steps.cache-ocaml-deps.outputs.cache-hit != 'true'
